@@ -1,3 +1,9 @@
+interface TabsProps{
+  focused: boolean;
+  icon: any;
+  title: string;
+}
+
 interface Movie {
   id: number;
   title: string;
