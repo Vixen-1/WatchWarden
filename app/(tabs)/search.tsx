@@ -6,6 +6,7 @@ import { fetchPopularMovies } from "@/services/api";
 import useFetch from "@/services/useFetch";
 import { icons } from "@/constants/icons";
 import SearchBar from "@/components/SearchBar";
+import { updateSearchCount } from "@/services/appwrite";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -21,12 +22,16 @@ const Search = () => {
     const timeOutID = setTimeout(async () => {
       if (searchQuery.trim()) {
         await loadMovies();
+        if (movies?.length > 0 && movies?.[0]){
+          await updateSearchCount(searchQuery, movies[0])
+        }
       } else {
         reset();
       }
     }, 500);
     return () => clearTimeout(timeOutID);
   }, [searchQuery]);
+
   return (
     <View className="flex-1 bg-primary">
       <Image
@@ -75,7 +80,7 @@ const Search = () => {
               searchQuery.trim() &&
               movies?.length > 0 && (
                 <Text className="text-xl text-white font-bold">
-                  Search results for {' '}
+                  <Text>Search results for </Text>
                   <Text className="text-accent">{searchQuery}</Text>
                 </Text>
               )}
@@ -84,10 +89,9 @@ const Search = () => {
         ListEmptyComponent={
           !moviesLoading && !moviesError ? (
             <View className="mt-10 px-5">
-              {" "}
               <Text className="text-center text-gray-500">
                 {searchQuery.trim() ? "No Movies Found" : "Search for a movie"}
-              </Text>{" "}
+              </Text>
             </View>
           ) : null
         }
