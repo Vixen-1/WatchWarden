@@ -4,6 +4,10 @@ interface TabsProps{
   title: string;
 }
 
+interface SearchProps{
+  onPress: () => void;
+  placeholder: string;
+}
 interface Movie {
   id: number;
   title: string;
