@@ -14,6 +14,7 @@ import useFetch from "@/services/useFetch";
 import { fetchPopularMovies } from "@/services/api";
 import MovieCard from "@/components/MovieCard";
 import { getTrendingMovies } from "@/services/appwrite";
+import TrendingCard from "@/components/TrendingCard";
 
 export default function Index() {
   const router = useRouter();
@@ -29,7 +30,7 @@ export default function Index() {
     errors: moviesError,
   } = useFetch(() => fetchPopularMovies({ query: "" }));
 
-  console.log("moviesss", trendingMovies)
+  console.log("moviesss", trendingMovies);
   return (
     <View className="flex-1 bg-primary">
       <Image source={images.bg} className="absolute w-full z-0" />
@@ -64,10 +65,15 @@ export default function Index() {
                   Trending Movies
                 </Text>
                 <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                ItemSeparatorComponent={()=> <View className="w-4" />}
+                className="mb-4 mt-3"
                   data={trendingMovies}
                   renderItem={({ item, index }) => (
-                    <Text className="text-white text-sm">{item.title}</Text>
+                    <TrendingCard movie={item} index={index} />
                   )}
+                  keyExtractor={(item)=> item.movie_id.toString()}
                 />
               </View>
             )}

@@ -10,6 +10,7 @@ const MovieCard = ({
   vote_average,
   release_date,
 }: Movie) => {
+  const starCount = vote_average ? Math.round(vote_average / 2) : 0;
   return (
     <Link href={`/movies/${id}`} asChild>
       <TouchableOpacity className="w-[30%]">
@@ -24,8 +25,14 @@ const MovieCard = ({
         />
         <Text className="text-sm font-bold text-white" numberOfLines={1}>{title}</Text>
         <View className="flex-row items-center justify-start gap-x-1">
-            <Image source={icons.star} className="size-4" />
-            <Text className="text-xs text-white font-bold uppercase">{Math.round(vote_average / 2)}</Text>
+            {[...Array(starCount)].map((_, index) => (
+            <Image
+              key={`${id}-star-${index}`}
+              source={icons.star}
+              className="size-4"
+              resizeMode="contain"
+            />
+          ))}
         </View>
         <View className="flex-row items-center justify-between">
             <Text className="text-xs text-light-300 font-medium mt-1">{release_date?.split('-')[0]}</Text>
