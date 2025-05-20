@@ -28,13 +28,13 @@ const Search = () => {
       }
     }, 500);
     return () => clearTimeout(timeOutID);
-  }, [searchQuery]);
+  }, [loadMovies, reset, searchQuery]);
 
   useEffect(()=>{
      if (movies?.length > 0 && movies?.[0]){
         updateSearchCount(searchQuery, movies[0])
       }
-  },[movies])
+  },[movies, searchQuery])
 
   return (
     <View className="flex-1 bg-primary">
