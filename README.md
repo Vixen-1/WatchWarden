@@ -50,14 +50,14 @@
 ```bash
 git clone https://github.com/your-username/movie-flix.git
 cd movie-flix
-
+```
 
 
 #### 2. Install Dependencies:
 
 ```bash
 npm install
-
+```
 
 #### 3. Set Up Environment Variables: Create a .env file in the root directory and add:
 
@@ -66,7 +66,7 @@ EXPO_PUBLIC_TMDB_API_KEY=your_tmdb_api_key
 EXPO_PUBLIC_APPWRITE_PROJECT_ID=your_appwrite_project_id
 EXPO_PUBLIC_APPWRITE_DB_ID=your_appwrite_database_id
 EXPO_PUBLIC_APPWRITE_COLLECTION_ID=your_appwrite_collection_id
-
+```
 
 #### 4. Configure Appwrite:
 
@@ -85,9 +85,10 @@ EXPO_PUBLIC_APPWRITE_COLLECTION_ID=your_appwrite_collection_id
 
 ```bash
 npx expo start
-
+```
 
 #### 6. Clear cache:
 
 ```bash
 npm start -- --reset-cache
+```
