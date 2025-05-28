@@ -34,7 +34,7 @@ const Search = () => {
      if (movies?.length > 0 && movies?.[0]){
         updateSearchCount(searchQuery, movies[0])
       }
-  },[movies, searchQuery])
+  },[searchQuery])
 
   return (
     <View className="flex-1 bg-primary">
